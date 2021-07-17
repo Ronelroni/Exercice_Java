@@ -1,51 +1,52 @@
-// Après avoir chargé le DOM, exécutez le traitement dans function ().
+// After loading the DOM, execute the processing in function()
 $(document).ready(function () {
-  // Logique qui obtient les scores (valeurs d'entrée) de "japonais, anglais, mathématiques, sciences et études sociales" et donne les scores totaux et moyens.
+  // Logic to get the score (input value) of "Japanese, English, math, science, society" and get the total score and average score
   function score_indicate() {
-    // Attribuez un tableau des notes de "japonais, anglais, mathématiques, sciences et études sociales" à la variable "subject_points".
+    // Substitute an array of scores for "Japanese, English, math, science, and society" into the variable "subject_points".
     let subject_points = [Number($('#national_language').val()),
     Number($('#english').val()),
     Number($('#mathematics').val()),
     Number($('#science').val()),
     Number($('#society').val())
     ];
-    // Ajoutez les scores de "japonais, anglais, mathématiques, sciences et études sociales" à la variable "somme".
+    // Add the score of "Japanese, English, math, science, society" to the variable "sum".
     let sum = subject_points[0];
     sum = sum + subject_points[1];
     sum = sum + subject_points[2];
     sum = sum + subject_points[3];
     sum = sum + subject_points[4];
-    //  Faites en sorte que la variable "sum" (score total) soit convertie en "score total :" (id="sum_indicate").
+    // Output the variable "sum" (total score) to "total score:" (id = "sum_indicate").
     $("#sum_indicate").text(sum);
-    // Décrivez le processus pour sortir le score moyen de chaque sujet dans "Score moyen :".
-    let moyenne = sum / subject_points.length;
-    $("#average_indicate").text(moyenne)
-    // Conseil : Attribuez la valeur moyenne à la variable "moyenne" (le nombre total de points (somme) du nombre que vous voulez moyenner / le nombre total de pièces).
-    // Conseil : Le nombre total d'articles est obtenu en utilisant la méthode de la longueur. (méthode length : méthode permettant d'obtenir la longueur d'une chaîne de caractères, le nombre d'éléments d'un tableau, etc.)
+    // Describe the process of outputting the average score of each subject in "Average score:".
+    let AVG = sum / subject_points.length;
+    // Hint: Let's assign the average value to the variable "average" (total number of numbers you want to average (sum) / total number)
+    $("#average_indicate").text(AVG);
+    // Tip: Use the length method to find the total number. (length method: Method to get the length of the character string, the number of elements in the array, etc.)
   };
-  // Décrivez la logique qui permet d'obtenir la note moyenne et de classer les sujets en "A, B, C ou D" en fonction de la note moyenne obtenue.
+  // Describe the logic to acquire the average score and rank it into "A, B, C, D" from the acquired average score.
   function get_achievement() {
-    // A la variable "averageIndicate"
-    // Obtenez le score moyen à partir de id="average_indicate" dans le HTML et attribuez-le.
+    // In the variable "averageIndicate"
+    // Get the average score from id = "average_indicate" on HTML and substitute it.
     let averageIndicate = $("#average_indicate").text();
     console.log(averageIndicate)
-    // Si "averageIndicate" est égal ou supérieur à 80, retournez "A".
+    // If "averageIndicate" is 80 or higher, "A" is returned.
     if (averageIndicate >= 80) {
       return "A";
     }
-    else if ("averageIndicate >= 60 ") {
-      return "B"
+    else if (averageIndicate >= 60) {
+      return "B";
     }
-    else if ("averageIndicate >= 40 ") {
-      return "C"
+    else if ( averageIndicate >= 40) {
+      return "C";
     }
-      else return "D"
+    else {
+      return "D";
     }
-    // Si "averageIndicate" est égal ou supérieur à 60, retournez "B".
-    // Si "averageIndicate" est égal ou supérieur à 40, retournez "C".
-    // retournez "D" sinon.
+    // If "averageIndicate" is 60 or more, "B" is returned.
+    // If "averageIndicate" is 40 or more, "C" is returned.
+    // If "averageIndicate" is otherwise, it returns "D".
   };
-  // Obtenez le score de chaque sujet, et créez une logique qui classe le sujet en "Réussi" ou "Échoué" en fonction du score obtenu.
+  // Obtain the points of each subject and create the logic to judge "pass or fail" from the obtained points.
   function get_pass_or_failure() {
     let subject_points = [Number($('#national_language').val()),
     Number($('#english').val()),
@@ -53,45 +54,47 @@ $(document).ready(function () {
     Number($('#science').val()),
     Number($('#society').val())
     ];
-    // Attribuez le nombre de sujets à la variable "nombre".
+    // Substitute the number of subjects entered in the variable "number".
     let number = subject_points.length;
-    // Assignez "pass" à la variable "judge".
-    let judge = "Passer";
-    for (let i=o; i < subject_points.lengh; i++){
+    // Assign "pass" to the variable "judge".
+    let judge = "Pass";
+    for (let i=0; i<subject_points.length; i++){
       if (subject_points[i]<60) {
-        judge = " Rejeter";
+        judge = "Fail";
         break;
       }
     }
-    // Si l'un des scores est inférieur à 60 points dans chacun des sujets saisis, le processus de réaffectation de "Rejeté" à la variable "juge" est décrit.
-    // Conseil : étudiez le processus d'itération pour les tableaux.
+    // If even one of the entered subjects has a score lower than 60 points, describe the process of reassigning "fail" to the variable "judge".
+    // Tip: Find out about iterating arrays.
     return judge;
   };
-  // Créez la logique pour le juge final.
+  // Create the final judge logic.
   function judgement() {
-    //  Attribuez la "valeur de retour de get_achievement()" à la variable "achievement".
+    // Assign "return value of get_achievement ()" to the variable "achievement".
     let achievement = get_achievement();
-    // Attribuez la "valeur de retour de get_pass_or_failure()" à la variable "pass_or_failure".
+    // Substitute "return value of get_pass_or_failure ()" for variable "pass_or_failure".
     let pass_or_failure = get_pass_or_failure();
-    $('#declaration').append(`<label id="alert-indicate" class="alert alert-info">Ton niveau${achievement}​${pass_or_failure}​</label>`)
-    // 「Juge final」(id="alert-indicate)Lorsque le bouton est pressé「Ton niveau${ {achievement}です。${pass_or_failure}です。</label>`);
+    // 「Result」(id="alert-indicate) press the button「Your grade is${achievement}です。${pass_or_failure}です。」 is the output process.
+    $('#declaration').append(`<label id="alert-indicate" class="alert alert-info">Your grade is${achievement}です。${pass_or_failure}です。</label>`);
   };
-  // Ce processus déclenche la fonction score_indicate() lorsque l'un des scores [score en japonais, score en anglais, score en mathématiques, score en sciences, score en sciences sociales] est modifié.
+  // This process fires "function score_indicate ()" when any of the scores in [Japanese score, English score, math score, science score, social score] is changed.
   $('#national_language, #english, #mathematics, #science, #society').change(function () {
     score_indicate();
   });
-  // Lorsque le bouton "rank"(id="évaluation") est pressé, "get_achievement()" sera produit.
+  // When you press the "Rank" (id = "evaluation") button, "get_achievement ()" is output.
   $('#btn-evaluation').click(function () {
     $("#evaluation").text(get_achievement());
   });
-  // Lorsque le bouton "jugement" (id="btn-judge") est pressé, le processus "fonction et_pass_ou_failure()" est émis.
+  // When you press the "judgment" (id = "btn-judge") button, "function et_pass_or_failure ()" is output.
   $('#btn-judge').click(function () {
     $("#judge").text(get_pass_or_failure());
   });
-  // Lorsque le bouton "juge final" (id="btn-declaration") est pressé, le processus de "function judgement()" est exécuté.
-  // Lorsque le bouton "Juge final" est cliqué pour la deuxième fois ou plus, l'élément HTML du juge affiché jusqu'alors est supprimé, et un nouvel élément HTML du juge est ajouté.
-  // Conseil : examinons la méthode de "remove"
+  // When the "final judge" (id = "btn-declaration") button is pressed, the process of "function judgment ()" is executed.
+  // When the "Final Judge" button is pressed from the second time onward, the HTML element of the judge that has been displayed up to that point is deleted and a new HTML element of the judge is added.
+  // Tip: Find out about the remove method.
   $('#btn-declaration').click(function () {
+    $('#declaration').find('label').hide();
+    judgment();
   });
 });
-// Si vous souhaitez implémenter le JavaScript sans suivre la description, vous pouvez le faire comme vous le souhaitez. Si vous remplissez toutes les conditions, vous réussirez l'exercice.
+// The JavaScript description written here is just a template prepared as a hint, so if you want to implement it without following the written description, you can implement it as you like. If you meet all the pass requirements, you will pass.
