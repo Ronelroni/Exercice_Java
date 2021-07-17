@@ -75,7 +75,7 @@ $(document).ready(function () {
     // Substitute "return value of get_pass_or_failure ()" for variable "pass_or_failure".
     let pass_or_failure = get_pass_or_failure();
     // 「Result」(id="alert-indicate) press the button「Your grade is${achievement}です。${pass_or_failure}です。」 is the output process.
-    $('#declaration').append(`<label id="alert-indicate" class="alert alert-info">Your grade is${achievement}です。${pass_or_failure}です。</label>`);
+    $('#declaration').append(`<label id="alert-indicate" class="alert alert-info"> GRADE IS ${achievement} YOU ${pass_or_failure}</label>`);
   };
   // This process fires "function score_indicate ()" when any of the scores in [Japanese score, English score, math score, science score, social score] is changed.
   $('#national_language, #english, #mathematics, #science, #society').change(function () {
@@ -94,7 +94,7 @@ $(document).ready(function () {
   // Tip: Find out about the remove method.
   $('#btn-declaration').click(function () {
     $('#declaration').find('label').hide();
-    judgment();
-  });
+    judgement();
+      });
 });
 // The JavaScript description written here is just a template prepared as a hint, so if you want to implement it without following the written description, you can implement it as you like. If you meet all the pass requirements, you will pass.
